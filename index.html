@@ -93,7 +93,10 @@
   box-shadow: 0 1px 0 rgba(255,255,255,0.02) inset !important;
 }
 [data-theme="dark"] .contact-item.social-links .value a:hover {
-  background: rgba(255,255,255,0.04) !important;
+  background: var(--text-color) !important;
+  color: var(--bg-main) !important;
+  border-color: var(--text-color) !important;
+  transform: translateY(-2px);
 }
 
  * {
@@ -723,21 +726,27 @@
      }
  }
 
- /* Contact Section */
+ /* Contact Section (compact layout to remove large blank gaps) */
  .contact {
-     padding-top: 5rem;
-     padding-bottom: 1rem;
+   /* moderate spacing so contact appears neither cramped nor loose */
+   padding-top: 1.75rem;
+   padding-bottom: 1rem;
  }
 
  .contact-content {
-     display: grid;
-     gap: 3rem;
+   display: grid;
+   /* moderate gap between image and contact info */
+   gap: 1.5rem;
+   /* center the contact-info vertically relative to the image so content
+      starts roughly in the middle instead of at the top */
+   align-items: center;
  }
 
  .contact-image {
      position: relative;
      border-radius: 10rem 0 10rem 0;
      overflow: hidden;
+     max-width: 100%;
  }
 
  .contact-image img {
@@ -751,32 +760,42 @@
      transform: scale(1.02);
  }
 
+ /* Make the right column compact: stack items tightly */
  .contact-info {
-  display: grid;
-  gap: 1rem 0.75rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem; /* larger vertical gap between contact sections */
+  /* small padding for comfortable text spacing */
+  padding-left: 0.5rem;
+  align-items: stretch;
  }
-.contact-item {
-  display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  gap: 0.75rem;
+
+ /* Each contact row uses a tight inline layout */
+ .contact-item {
+  display: flex;
   align-items: center;
+  gap: 0.75rem; /* comfortable gap between icon and text */
+  margin: 0; /* ensure no extra margins create blank space */
 }
 
-/* For the social links row we don't want the left icon column; use a single column so links start immediately */
-.contact-item.social-links {
-  grid-template-columns: 1fr;
+ /* Social row: remove left icon column and keep links compact */
+ .contact-item.social-links {
+  display: block; /* block so label + value stack naturally */
 }
 
-.icon-wrapper {
+ .contact-item.social-links > div {
+  margin: 0;
+}
+
+ .icon-wrapper {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 0.4rem;
   background: var(--bg-gray);
-  border-radius: 0.6rem;
-  width: 3.5rem;
-  height: 3.5rem;
+  border-radius: 0.5rem;
+  width: 3rem;
+  height: 3rem;
   transition: var(--transition);
   box-shadow: 0 1px 0 rgba(0,0,0,0.02);
 }
@@ -791,7 +810,7 @@
   color: var(--text-gray);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin: 0 0 0.125rem 0;
+  margin: 0 0 0.125rem 0; /* small bottom margin for comfortable spacing */
 }
 
 .value {
@@ -861,7 +880,7 @@
 /* Social links inside contact */
 .contact-item.social-links .value {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.5rem; /* comfortable spacing between social buttons */
   align-items: center;
   flex-wrap: wrap;
 }
@@ -870,11 +889,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  /* match the main contact icon size */
-  width: 3.5rem;
-  height: 3.5rem;
+  /* slightly larger social squares for better touch/visual spacing */
+  width: 2.75rem;
+  height: 2.75rem;
   /* match icon-wrapper corner radius */
-  border-radius: 0.6rem;
+  border-radius: 0.5rem;
   background: transparent;
   color: var(--text-color);
   text-decoration: none;
@@ -1223,7 +1242,7 @@
               </div>
             </div>
 
-            <div class="contact-item">
+            <!-- <div class="contact-item">
               <div class="icon-wrapper">
                 <i data-lucide="phone"></i>
               </div>
@@ -1241,7 +1260,7 @@
                 <p class="label">Website</p>
                 <p class="value"><a href="https://www.example.com" target="_blank" rel="noopener">www.example.com</a></p>
               </div>
-            </div>
+            </div> -->
 
             <div class="contact-item">
               <div class="icon-wrapper">
