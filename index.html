@@ -74,12 +74,6 @@
   color: inherit !important;
 }
 
-/* Make footer match the header when dark mode is active */
-[data-theme="dark"] .footer {
-  background: rgba(0,0,0,0.9) !important;
-  box-shadow: 0 1px 3px rgba(255,255,255,0.03) !important;
-}
-
 /* Make carousel arrow icons white in dark mode */
 [data-theme="dark"] .carousel-btn {
   color: #fff !important; /* lucide svgs use currentColor for stroke */
@@ -815,14 +809,14 @@
 
  /* Footer */
  .footer {
-  /* Footer uses the same header/footer variables so it matches the header in both themes */
+  /* Use header/footer variables to match header in both light and dark modes */
   background: var(--header-footer-bg);
   color: var(--text-color);
   padding: 1rem 0;
   position: relative;
- /* Remove any top border or outline that can appear as a white frame */
- border-top: none;
- box-shadow: var(--header-footer-shadow);
+  /* Add subtle shadow like the header */
+  border-top: none;
+  box-shadow: var(--header-footer-shadow);
  }
 
 /* Ensure the inner container inside the footer doesn't use the page container's
